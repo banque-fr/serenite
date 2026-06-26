@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banque Sérénité - Espace Client</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a1628;
+            --secondary: #1a2942;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #8b5cf6;
+            --text: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border: #2d3a4f;
+            --card: #1e293b;
+            --bg: #0f172a;
+            --input-bg: #1e293b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ============ PAGE D'ACCUEIL PUBLIQUE ============ */
+        .public-nav {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .public-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .public-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .public-logo i {
+            font-size: 2rem;
+        }
+
+        .public-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .public-menu a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .public-menu a:hover {
+            color: var(--accent);
+        }
+
+        .btn-espace-client {
+            background: var(--accent);
+            color: var(--white) !important;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-espace-client:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1a2942 50%, #0f172a 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--info));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .public-footer {
+            background: var(--primary);
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        /* ============ PAGE DE CONNEXION ============ */
+        .login-page {
+            display: none;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2942 50%, #0f172a 100%);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-page.active {
+            display: flex;
+        }
+
+        .login-container {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-logo {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .login-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: var(--text-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 2.8rem;
+            background: var(--input-bg);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            color: #fca5a5;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .error-message.show {
+            display: flex;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .login-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .security-badge {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        /* ============ ESPACE CLIENT ============ */
+        .app-container {
+            display: none;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .app-container.active {
+            display: flex;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--secondary);
+            padding: 0 2rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bank-logo {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .bank-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .notification-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .notification-btn:hover {
+            color: var(--accent);
+        }
+
+        .notif-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--danger);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            transition: background 0.3s;
+        }
+
+        .user-profile:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .user-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .user-details {
+            line-height: 1.3;
+        }
+
+        .user-name-display {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 72px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--secondary);
+            border-right: 1px solid var(--border);
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-section h3 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.3rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--text);
+        }
+
+        .nav-link.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .logout-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            color: var(--danger);
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .logout-link:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-icon.blue { background: rgba(59, 130, 246, 0.1); color: var(--accent); }
+        .stat-icon.green { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .stat-icon.purple { background: rgba(139, 92, 246, 0.1); color: var(--info); }
+        .stat-icon.orange { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .stat-icon.red { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .stat-change {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .stat-change.positive { color: var(--success); }
+        .stat-change.negative { color: var(--danger); }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+        .badge-info { background: rgba(59, 130, 246, 0.1); color: var(--accent); }
+        .badge-purple { background: rgba(139, 92, 246, 0.1); color: var(--info); }
+
+        /* Tables */
+        .table-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 1rem 0.8rem;
+            border-bottom: 1px solid rgba(45, 58, 79, 0.5);
+        }
+
+        .amount-credit { color: var(--success); font-weight: 600; }
+        .amount-debit { color: var(--danger); font-weight: 600; }
+
+        /* Forms */
+        .form-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Cards Display */
+        .bank-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bank-card.gold {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .bank-card.platinum {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .card-chip {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-number {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                gap: 2rem;
+            }
+            
+            .public-menu {
+                display: none;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+            }
+            
+            .main-layout {
+                flex-direction: column;
+            }
+            
+            .top-bar {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .search-bar {
+                order: 3;
+                margin: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== PAGE D'ACCUEIL PUBLIQUE ==================== -->
+<div id="publicPage">
+    <nav class="public-nav">
+        <div class="public-nav-container">
+            <a href="#" class="public-logo" onclick="showPublicPage()">
+                <i class="fas fa-shield-alt"></i>
+                <span>Banque Sérénité</span>
+            </a>
+            <ul class="public-menu">
+                <li><a href="#" onclick="showPublicPage()">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#" class="btn-espace-client" onclick="showLoginPage()">
+                <i class="fas fa-lock"></i> Espace Client
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Votre sérénité financière commence ici</h1>
+            <p>Gérez vos comptes, investissements et projets en toute sécurité avec la Banque Sérénité, votre partenaire de confiance depuis 1985.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary" onclick="showLoginPage()">
+                    <i class="fas fa-sign-in-alt"></i> Accéder à mon espace
+                </a>
+                <a href="#services" class="btn-secondary">Découvrir nos services</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">2M+</span>
+                <span class="stat-label">Clients satisfaits</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Sécurité garantie</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Support client</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <h2 class="section-title">Nos services bancaires</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3>Comptes bancaires</h3>
+                <p>Comptes courants, joints et professionnels adaptés à tous vos besoins quotidiens.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-piggy-bank"></i>
+                </div>
+                <h3>Épargne & Placements</h3>
+                <p>Livret A, PEA, assurance-vie et solutions d'investissement performantes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Crédits immobiliers</h3>
+                <p>Taux préférentiels pour votre résidence principale ou investissement locatif.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Assurances</h3>
+                <p>Protection complète : auto, habitation, santé et prévoyance pour votre tranquillité.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Cartes bancaires</h3>
+                <p>Visa, Mastercard, cartes premium avec assurance et assistance incluses.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Banque en ligne</h3>
+                <p>Gérez vos comptes 24h/24, 7j/7 depuis votre ordinateur ou mobile.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="public-footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Banque Sérénité</h4>
+                <p>Votre partenaire de confiance depuis 1985. Agréée par l'ACPR et adhérente au Fonds de Garantie des Dépôts.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a href="#" onclick="showLoginPage()">Espace client</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Protection des données</a></li>
+                    <li><a href="#">Tarifs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 06 32 77 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@banqueserenite.fr</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Avenue des Champs-Élysées, Paris</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- ==================== PAGE DE CONNEXION ==================== -->
+<div id="loginPage" class="login-page">
+    <div style="width: 100%; max-width: 500px;">
+        <a href="#" class="back-link" onclick="showPublicPage()">
+            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+        </a>
+        
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Espace Client Sécurisé</h2>
+                <p>Connectez-vous pour accéder à votre banque</p>
+            </div>
+
+            <div class="error-message" id="loginError">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="errorText"></span>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Identifiant client</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" class="form-input" id="username" placeholder="Ex: jean.dupont" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" class="form-input" id="password" placeholder="••••••••" required autocomplete="current-password">
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Se souvenir de moi</span>
+                    </label>
+                    <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>Première connexion ? <a href="#">Activez votre compte</a></p>
+            </div>
+
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i> Connexion sécurisée SSL 256-bit
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== ESPACE CLIENT ==================== -->
+<div id="appContainer" class="app-container">
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="top-left">
+            <i class="fas fa-shield-alt bank-logo"></i>
+            <span class="bank-name">Banque Sérénité</span>
+        </div>
+        
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Rechercher une transaction, un compte...">
+        </div>
+        
+        <div class="top-right">
+            <button class="notification-btn">
+                <i class="fas fa-bell"></i>
+                <span class="notif-badge">3</span>
+            </button>
+            
+            <div class="user-profile">
+                <div class="user-avatar" id="userAvatar">JD</div>
+                <div class="user-details">
+                    <div class="user-name-display" id="userNameDisplay">Céline Forestier</div>
+                    <div class="user-role" id="userRoleDisplay">Client Premium</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="nav-section">
+                <h3>Menu principal</h3>
+                <ul class="nav-menu">
+                    <li><a class="nav-link active" data-page="dashboard"><i class="fas fa-th-large"></i> Tableau de bord</a></li>
+                    <li><a class="nav-link" data-page="accounts"><i class="fas fa-university"></i> Mes comptes</a></li>
+                    <li><a class="nav-link" data-page="transactions"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                    <li><a class="nav-link" data-page="transfers"><i class="fas fa-paper-plane"></i> Virements</a></li>
+                    <li><a class="nav-link" data-page="cards"><i class="fas fa-credit-card"></i> Cartes bancaires</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Services</h3>
+                <ul class="nav-menu">
+                    <li><a class="nav-link" data-page="savings"><i class="fas fa-piggy-bank"></i> Épargne & Placements</a></li>
+                    <li><a class="nav-link" data-page="loans"><i class="fas fa-hand-holding-usd"></i> Crédits</a></li>
+                    <li><a class="nav-link" data-page="insurance"><i class="fas fa-shield-alt"></i> Assurances</a></li>
+                    <li><a class="nav-link" data-page="investments"><i class="fas fa-chart-line"></i> Bourse & Trading</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Paramètres</h3>
+                <ul class="nav-menu">
+                    <li><a class="nav-link" data-page="profile"><i class="fas fa-user-circle"></i> Mon profil</a></li>
+                    <li><a class="nav-link" data-page="security"><i class="fas fa-lock"></i> Sécurité</a></li>
+                    <li><a class="nav-link" data-page="documents"><i class="fas fa-file-alt"></i> Documents</a></li>
+                    <li><a class="nav-link" data-page="support"><i class="fas fa-headset"></i> Support</a></li>
+                </ul>
+                <a class="logout-link" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </a>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content-area">
+            <!-- ========== DASHBOARD ========== -->
+            <div class="page active" id="page-dashboard">
+                <div class="page-header">
+                    <div class="breadcrumb">
+                        <a href="#"><i class="fas fa-home"></i> Accueil</a> / Tableau de bord
+                    </div>
+                    <h1>👋 Bonjour, <span id="welcomeName">Céline</span></h1>
+                    <p>Voici votre résumé financier au 26 juin 2026</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon blue"><i class="fas fa-wallet"></i></div>
+                            <span class="badge badge-info">Principal</span>
+                        </div>
+                        <div class="stat-value" id="checkingBalance">74 280,50 €</div>
+                        <div class="stat-label">Compte courant</div>
+                        <div class="stat-change positive">+2.4% ce mois</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon green"><i class="fas fa-piggy-bank"></i></div>
+                            <span class="badge badge-success">Actif</span>
+                        </div>
+                        <div class="stat-value" id="savingsBalance">32 750,00 €</div>
+                        <div class="stat-label">Livret A (3% annuel)</div>
+                        <div class="stat-change positive">+382,50 € d'intérêts/an</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon purple"><i class="fas fa-chart-line"></i></div>
+                            <span class="badge badge-purple">Performance</span>
+                        </div>
+                        <div class="stat-value" id="investmentBalance">18 320,40 €</div>
+                        <div class="stat-label">PEA Bourse</div>
+                        <div class="stat-change positive">+5.7% cette année</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon orange"><i class="fas fa-credit-card"></i></div>
+                        </div>
+                        <div class="stat-value">9 250,00 €</div>
+                        <div class="stat-label">Dépenses carte ce mois</div>
+                        <div class="stat-change negative">-12% vs mois dernier</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Dernières transactions</h3>
+                        <a href="#" class="nav-link-inline" data-page="transactions" style="color: var(--accent); text-decoration: none;">Voir tout →</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Date</th><th>Description</th><th>Catégorie</th><th>Montant</th><th>Statut</th></tr>
+                        </thead>
+                        <tbody id="recentTransactions">
+                            <tr>
+                                <td>26/05/2026</td>
+                                <td>Salaire Entreprise ABC</td>
+                                <td>Revenus</td>
+                                <td class="amount-credit">+8 200,00 €</td>
+                                <td><span class="badge badge-success">Effectué</span></td>
+                            </tr>
+                            <tr>
+                                <td>25/05/2026</td>
+                                <td>Achat Amazon</td>
+                                <td>Achats</td>
+                                <td class="amount-debit">-49,99 €</td>
+                                <td><span class="badge badge-success">Effectué</span></td>
+                            </tr>
+                            <tr>
+                                <td>24/05/2026</td>
+                                <td>Prélèvement EDF</td>
+                                <td>Énergie</td>
+                                <td class="amount-debit">-85,00 €</td>
+                                <td><span class="badge badge-warning">En attente</span></td>
+                            </tr>
+                            <tr>
+                                <td>23/05/2026</td>
+                                <td>Virement reçu</td>
+                                <td>Virement</td>
+                                <td class="amount-credit">+30 000,00 €</td>
+                                <td><span class="badge badge-success">Effectué</span></td>
+                            </tr>
+                            <tr>
+                                <td>22/05/2026</td>
+                                <td>Restaurant Le Gourmet</td>
+                                <td>Restauration</td>
+                                <td class="amount-debit">-65,50 €</td>
+                                <td><span class="badge badge-success">Effectué</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ========== COMPTES ========== -->
+            <div class="page" id="page-accounts">
+                <div class="page-header">
+                    <h1>💳 Mes comptes bancaires</h1>
+                    <p>Vue d'ensemble de tous vos comptes</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-university"></i></div>
+                        <h3 style="margin: 1rem 0;">Compte Courant</h3>
+                        <div class="stat-value">74 280,50 €</div>
+                        <p style="color: var(--text-secondary);">IBAN: FR76 30024 5938 9016 3856 7290 145</p>
+                        <p style="color: var(--text-secondary);">BIC: SERIFRPP</p>
+                        <span class="badge badge-info">Principal</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-piggy-bank"></i></div>
+                        <h3 style="margin: 1rem 0;">Livret A</h3>
+                        <div class="stat-value">32 750,00 €</div>
+                        <p style="color: var(--text-secondary);">Taux d'intérêt : 3%</p>
+                        <p style="color: var(--text-secondary);">Plafond : 22 950 €</p>
+                        <span class="badge badge-success">Épargne</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-chart-line"></i></div>
+                        <h3 style="margin: 1rem 0;">PEA</h3>
+                        <div class="stat-value">8 320,40 €</div>
+                        <p style="color: var(--text-secondary);">Plan d'Épargne en Actions</p>
+                        <span class="badge badge-purple">Investissement</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-users"></i></div>
+                        <h3 style="margin: 1rem 0;">Compte Joint</h3>
+                        <div class="stat-value">16 180,30 €</div>
+                        <p style="color: var(--text-secondary);">Co-titulaire : Camille Laporte</p>
+                        <span class="badge badge-warning">Partagé</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== TRANSACTIONS ========== -->
+            <div class="page" id="page-transactions">
+                <div class="page-header">
+                    <h1>📋 Historique des transactions</h1>
+                    <p>Consultez et filtrez toutes vos opérations</p>
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Toutes les transactions</h3>
+                        <div>
+                            <select class="form-input" style="width: auto; display: inline-block;">
+                                <option>Toutes les catégories</option>
+                                <option>Revenus</option>
+                                <option>Achats</option>
+                                <option>Énergie</option>
+                                <option>Virement</option>
+                                <option>Restauration</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Date</th><th>Description</th><th>Catégorie</th><th>Montant</th><th>Statut</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>26/05/2026</td><td>Salaire Entreprise ABC</td><td>Revenus</td><td class="amount-credit">+8 200,00 €</td><td><span class="badge badge-success">Effectué</span></td></tr>
+                            <tr><td>25/05/2026</td><td>Achat Amazon</td><td>Achats</td><td class="amount-debit">-49,99 €</td><td><span class="badge badge-success">Effectué</span></td></tr>
+                            <tr><td>24/05/2026</td><td>Prélèvement EDF</td><td>Énergie</td><td class="amount-debit">-85,00 €</td><td><span class="badge badge-warning">En attente</span></td></tr>
+                            <tr><td>23/05/2026</td><td>Virement reçu</td><td>Virement</td><td class="amount-credit">+5000,00 €</td><td><span class="badge badge-success">Effectué</span></td></tr>
+                            <tr><td>22/05/2026</td><td>Restaurant Le Gourmet</td><td>Restauration</td><td class="amount-debit">-65,50 €</td><td><span class="badge badge-success">Effectué</span></td></tr>
+                            <tr><td>20/05/2026</td><td>Abonnement Netflix</td><td>Loisirs</td><td class="amount-debit">-13,99 €</td><td><span class="badge badge-success">Effectué</span></td></tr>
+                            <tr><td>18/05/2026</td><td>Remboursement assurance</td><td>Remboursement</td><td class="amount-credit">+120,00 €</td><td><span class="badge badge-success">Effectué</span></td></tr>
+                            <tr><td>15/05/2026</td><td>Supermarché Carrefour</td><td>Courses</td><td class="amount-debit">-78,35 €</td><td><span class="badge badge-success">Effectué</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ========== VIREMENTS ========== -->
+            <div class="page" id="page-transfers">
+                <div class="page-header">
+                    <h1>💸 Effectuer un virement</h1>
+                    <p>Transférez de l'argent en toute sécurité</p>
+                </div>
+                
+                <div class="form-container">
+                    <h2>Nouveau virement</h2>
+                    <div class="form-group">
+                        <label>Compte à débiter</label>
+                        <select class="form-input">
+                            <option>Compte courant (74 280,50 €)</option>
+                            <option>Compte joint (16 180,30 €)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Type de virement</label>
+                        <select class="form-input" id="transferType">
+                            <option value="internal">Virement interne (comptes Sérénité)</option>
+                            <option value="external">Virement externe (autre banque)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bénéficiaire</label>
+                        <input type="text" class="form-input" placeholder="Nom du bénéficiaire">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>IBAN du bénéficiaire</label>
+                        <input type="text" class="form-input" placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Montant (€)</label>
+                        <input type="number" class="form-input" id="transferAmount" placeholder="0,00" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Motif du virement (optionnel)</label>
+                        <input type="text" class="form-input" placeholder="Ex: Remboursement, loyer...">
+                    </div>
+                    
+                    <button class="btn-submit" onclick="handleTransfer()">
+                        <i class="fas fa-paper-plane"></i> Valider le virement
+                    </button>
+                    
+                    <div id="transferMessage" style="margin-top: 1rem; padding: 1rem; border-radius: 10px; display: none;"></div>
+                </div>
+            </div>
+
+            <!-- ========== CARTES BANCAIRES ========== -->
+            <div class="page" id="page-cards">
+                <div class="page-header">
+                    <h1>💳 Mes cartes bancaires</h1>
+                    <p>Gérez vos cartes et consultez vos plafonds</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="bank-card">
+                        <div class="card-chip"><i class="fas fa-credit-card"></i></div>
+                        <div class="card-number">4521 •••• •••• 7340</div>
+                        <div class="card-info">
+                            <div>
+                                <small>Titulaire</small><br>
+                                <strong>Marie-Christelle Laporte</strong>
+                            </div>
+                            <div>
+                                <small>Expire le</small><br>
+                                <strong>12/2028</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bank-card gold">
+                        <div class="card-chip"><i class="fas fa-credit-card"></i></div>
+                        <div class="card-number">8793 •••• •••• 4562</div>
+                        <div class="card-info">
+                            <div>
+                                <small>Titulaire</small><br>
+                                <strong>Marie-Christelle Laporte</strong>
+                            </div>
+                            <div>
+                                <small>Expire le</small><br>
+                                <strong>06/2027</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-container" style="margin-top: 2rem;">
+                    <h3>Détails des cartes</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Type</th><th>Numéro</th><th>Plafond</th><th>Statut</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Visa Premier</td>
+                                <td>4521 •••• •••• 7340</td>
+                                <td>5 000 € / mois</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mastercard Gold</td>
+                                <td>8793 •••• •••• 4562</td>
+                                <td>8 000 € / mois</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ========== ÉPARGNE & PLACEMENTS ========== -->
+            <div class="page" id="page-savings">
+                <div class="page-header">
+                    <h1>🏦 Épargne & Placements</h1>
+                    <p>Optimisez votre épargne et vos investissements</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-piggy-bank"></i></div>
+                        <h3 style="margin: 1rem 0;">Livret A</h3>
+                        <div class="stat-value">32 750,00 €</div>
+                        <p>Taux : 3% | Intérêts annuels : 382,50 €</p>
+                        <span class="badge badge-success">Disponible</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-chart-line"></i></div>
+                        <h3 style="margin: 1rem 0;">PEA</h3>
+                        <div class="stat-value">18 320,40 €</div>
+                        <p>Performance : +5,7% depuis janvier</p>
+                        <span class="badge badge-purple">Investi</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-shield-alt"></i></div>
+                        <h3 style="margin: 1rem 0;">Assurance-vie</h3>
+                        <div class="stat-value">50 000,00 €</div>
+                        <p>Contrat multisupport | Rendement : 4,2%</p>
+                        <span class="badge badge-info">Sécurisé</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CRÉDITS ========== -->
+            <div class="page" id="page-loans">
+                <div class="page-header">
+                    <h1>💳 Mes crédits</h1>
+                    <p>Suivez vos crédits en cours et simulez de nouveaux projets</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-home"></i></div>
+                        <h3>Crédit Immobilier</h3>
+                        <div class="stat-value">185 000 €</div>
+                        <p>Restant dû | Mensualité : 890 €</p>
+                        <p>Taux : 2,85% | Durée restante : 18 ans</p>
+                        <span class="badge badge-info">En cours</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-car"></i></div>
+                        <h3>Crédit Auto</h3>
+                        <div class="stat-value">12 500 €</div>
+                        <p>Restant dû | Mensualité : 350 €</p>
+                        <p>Taux : 3,5% | Durée restante : 3 ans</p>
+                        <span class="badge badge-warning">En cours</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== ASSURANCES ========== -->
+            <div class="page" id="page-insurance">
+                <div class="page-header">
+                    <h1>🛡️ Mes assurances</h1>
+                    <p>Gérez vos contrats d'assurance</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-home"></i></div>
+                        <h3>Assurance Habitation</h3>
+                        <p>Contrat n° AH-2024-789</p>
+                        <p>Prochaine échéance : 15/01/2027</p>
+                        <span class="badge badge-success">Actif</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-car"></i></div>
+                        <h3>Assurance Auto</h3>
+                        <p>Contrat n° AA-2025-456</p>
+                        <p>Prochaine échéance : 01/03/2027</p>
+                        <span class="badge badge-success">Actif</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-heartbeat"></i></div>
+                        <h3>Assurance Santé</h3>
+                        <p>Contrat n° AS-2024-123</p>
+                        <p>Prochaine échéance : 30/06/2027</p>
+                        <span class="badge badge-success">Actif</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== BOURSE & TRADING ========== -->
+            <div class="page" id="page-investments">
+                <div class="page-header">
+                    <h1>📈 Bourse & Trading</h1>
+                    <p>Suivez vos investissements boursiers</p>
+                </div>
+                
+                <div class="table-container">
+                    <h3>Portefeuille d'actions</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Action</th><th>Quantité</th><th>Prix unitaire</th><th>Valeur totale</th><th>Variation</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TotalEnergies</td>
+                                <td>50</td>
+                                <td>62,50 €</td>
+                                <td>3 125,00 €</td>
+                                <td class="amount-credit">+2,3%</td>
+                            </tr>
+                            <tr>
+                                <td>LVMH</td>
+                                <td>10</td>
+                                <td>850,00 €</td>
+                                <td>8 500,00 €</td>
+                                <td class="amount-credit">+1,8%</td>
+                            </tr>
+                            <tr>
+                                <td>Air Liquide</td>
+                                <td>30</td>
+                                <td>165,40 €</td>
+                                <td>4 962,00 €</td>
+                                <td class="amount-debit">-0,5%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ========== PROFIL ========== -->
+            <div class="page" id="page-profile">
+                <div class="page-header">
+                    <h1>👤 Mon profil</h1>
+                    <p>Gérez vos informations personnelles</p>
+                </div>
+                
+                <div class="form-container">
+                    <h2>Informations personnelles</h2>
+                    <div class="form-group">
+                        <label>Nom complet</label>
+                        <input type="text" class="form-input" value="Marie-Christelle Laporte">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-input" value="mclaporte10@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Téléphone</label>
+                        <input type="tel" class="form-input" value="07 80 95 05 56">
+                    </div>
+                    <div class="form-group">
+                        <label>Adresse</label>
+                        <input type="text" class="form-input" value="44 Avenue des Chantilly, 33800 ">
+                    </div>
+                    <button class="btn-submit">Mettre à jour mes informations</button>
+                </div>
+            </div>
+
+            <!-- ========== SÉCURITÉ ========== -->
+            <div class="page" id="page-security">
+                <div class="page-header">
+                    <h1>🔒 Sécurité</h1>
+                    <p>Protégez votre compte</p>
+                </div>
+                
+                <div class="form-container">
+                    <h2>Paramètres de sécurité</h2>
+                    <div class="form-group">
+                        <label>Authentification à deux facteurs (2FA)</label>
+                        <select class="form-input">
+                            <option>Activée (SMS + Email)</option>
+                            <option>Désactivée</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Changer le mot de passe</label>
+                        <input type="password" class="form-input" placeholder="Mot de passe actuel">
+                        <input type="password" class="form-input" placeholder="Nouveau mot de passe" style="margin-top: 0.5rem;">
+                        <input type="password" class="form-input" placeholder="Confirmer le mot de passe" style="margin-top: 0.5rem;">
+                    </div>
+                    <button class="btn-submit">Mettre à jour la sécurité</button>
+                </div>
+            </div>
+
+            <!-- ========== DOCUMENTS ========== -->
+            <div class="page" id="page-documents">
+                <div class="page-header">
+                    <h1>📄 Documents</h1>
+                    <p>Consultez et téléchargez vos documents bancaires</p>
+                </div>
+                
+                <div class="table-container">
+                    <h3>Mes documents</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Document</th><th>Date</th><th>Type</th><th>Action</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Relevé de compte - Mai 2026</td>
+                                <td>26/05/2026</td>
+                                <td><span class="badge badge-info">Relevé</span></td>
+                                <td><a href="#" style="color: var(--accent);"><i class="fas fa-download"></i> Télécharger</a></td>
+                            </tr>
+                            <tr>
+                                <td>Avis d'impôt 2026</td>
+                                <td>15/05/2026</td>
+                                <td><span class="badge badge-warning">Fiscal</span></td>
+                                <td><a href="#" style="color: var(--accent);"><i class="fas fa-download"></i> Télécharger</a></td>
+                            </tr>
+                            <tr>
+                                <td>Contrat assurance habitation</td>
+                                <td>10/01/2026</td>
+                                <td><span class="badge badge-purple">Contrat</span></td>
+                                <td><a href="#" style="color: var(--accent);"><i class="fas fa-download"></i> Télécharger</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ========== SUPPORT ========== -->
+            <div class="page" id="page-support">
+                <div class="page-header">
+                    <h1>🎧 Support client</h1>
+                    <p>Nous sommes là pour vous aider</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-phone"></i></div>
+                        <h3>Par téléphone</h3>
+                        <p style="font-size: 1.2rem; font-weight: 600;">06 32 77 67 89</p>
+                        <p>Lun-Ven : 8h-20h<br>Sam : 9h-17h</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-envelope"></i></div>
+                        <h3>Par email</h3>
+                        <p>support@banqueserenite.fr</p>
+                        <p>Réponse sous 24h</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-comments"></i></div>
+                        <h3>Chat en direct</h3>
+                        <p>Disponible 24h/24, 7j/7</p>
+                        <button class="btn-submit" style="margin-top: 1rem;">Démarrer un chat</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+    // ============ BASE DE DONNÉES UTILISATEURS ============
+    const usersDB = [
+        {
+            id: 'CLI001',
+            username: 'mclaporte',
+            password: 'Mc1518',
+            name: 'Marie-Christelle Laporte',
+            initials: 'ML',
+            role: 'Client Premium',
+            accounts: {
+                checking: 74280.50,
+                savings: 32750.00,
+                investments: 18320.40
+            }
+        },
+        {
+            id: 'CLI002',
+            username: 'jacky.fraudin',
+            password: 'Mc1518',
+            name: 'Jacky Fraudin',
+            initials: 'JF',
+            role: 'Client Premium',
+            accounts: {
+                checking: 92340.75,
+                savings: 48500.00,
+                investments: 24200.00
+            }
+        },
+        {
+            id: 'CLI003',
+            username: 'cforestier',
+            password: 'Mc1518',
+            name: 'Céline Forestier',
+            initials: 'CF',
+            role: 'Client Standar',
+            accounts: {
+                checking: 85000.00,
+                savings: 40000.00,
+                investments: 27500.00
+            }
+        }
+    ];
+
+    // ============ NAVIGATION ============
+    function showPublicPage() {
+        document.getElementById('publicPage').style.display = 'block';
+        document.getElementById('loginPage').classList.remove('active');
+        document.getElementById('appContainer').classList.remove('active');
+    }
+
+    function showLoginPage() {
+        document.getElementById('publicPage').style.display = 'none';
+        document.getElementById('loginPage').classList.add('active');
+        document.getElementById('appContainer').classList.remove('active');
+    }
+
+    function showAppContainer() {
+        document.getElementById('publicPage').style.display = 'none';
+        document.getElementById('loginPage').classList.remove('active');
+        document.getElementById('appContainer').classList.add('active');
+        
+        // Charger les données utilisateur
+        loadUserData();
+    }
+
+    // ============ GESTION CONNEXION ============
+    function handleLogin(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+        
+        if (!username || !password) {
+            showLoginError('Veuillez remplir tous les champs');
+            return false;
+        }
+        
+        const user = usersDB.find(u => u.username === username && u.password === password);
+        
+        if (user) {
+            // Stocker la session
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+            
+            // Se souvenir de l'utilisateur
+            if (rememberMe) {
+                localStorage.setItem('rememberedUser', username);
+            } else {
+                localStorage.removeItem('rememberedUser');
+            }
+            
+            // Afficher l'interface
+            showAppContainer();
+            
+            // Notification
+            setTimeout(() => {
+                showNotification('✅ Connexion réussie ! Bienvenue ' + user.name);
+            }, 500);
+            
+        } else {
+            showLoginError('Identifiant ou mot de passe incorrect');
+        }
+        
+        return false;
+    }
+
+    function showLoginError(message) {
+        const errorDiv = document.getElementById('loginError');
+        const errorText = document.getElementById('errorText');
+        errorText.textContent = message;
+        errorDiv.classList.add('show');
+        
+        setTimeout(() => {
+            errorDiv.classList.remove('show');
+        }, 3000);
+    }
+
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    }
+
+    // ============ CHARGEMENT DONNÉES UTILISATEUR ============
+    function loadUserData() {
+        const userData = JSON.parse(sessionStorage.getItem('currentUser'));
+        if (!userData) return;
+        
+        document.getElementById('userAvatar').textContent = userData.initials;
+        document.getElementById('userNameDisplay').textContent = userData.name;
+        document.getElementById('userRoleDisplay').textContent = userData.role;
+        document.getElementById('welcomeName').textContent = userData.name.split(' ')[0];
+        document.getElementById('checkingBalance').textContent = userData.accounts.checking.toLocaleString('fr-FR', { minimumFractionDigits: 2 }) + ' €';
+        document.getElementById('savingsBalance').textContent = userData.accounts.savings.toLocaleString('fr-FR', { minimumFractionDigits: 2 }) + ' €';
+        document.getElementById('investmentBalance').textContent = userData.accounts.investments.toLocaleString('fr-FR', { minimumFractionDigits: 2 }) + ' €';
+    }
+
+    // ============ NAVIGATION DANS L'APP ============
+    document.addEventListener('DOMContentLoaded', function() {
+        // Navigation dans la sidebar
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Mettre à jour les liens actifs
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Afficher la page correspondante
+                const pageId = 'page-' + this.dataset.page;
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+            });
+        });
+        
+        // Liens inline dans le dashboard
+        document.querySelectorAll('.nav-link-inline').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = 'page-' + this.dataset.page;
+                
+                // Activer le lien de la sidebar correspondant
+                document.querySelectorAll('.nav-link').forEach(l => {
+                    l.classList.remove('active');
+                    if (l.dataset.page === this.dataset.page) {
+                        l.classList.add('active');
+                    }
+                });
+                
+                // Afficher la page
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+            });
+        });
+        
+        // Vérifier si un utilisateur est déjà connecté
+        const currentUser = sessionStorage.getItem('currentUser');
+        if (currentUser) {
+            showAppContainer();
+        }
+        
+        // Remplir le champ utilisateur si "se souvenir de moi"
+        const remembered = localStorage.getItem('rememberedUser');
+        if (remembered && document.getElementById('username')) {
+            document.getElementById('username').value = remembered;
+            document.getElementById('rememberMe').checked = true;
+        }
+    });
+
+    // ============ DÉCONNEXION ============
+    function logout() {
+        sessionStorage.removeItem('currentUser');
+        document.getElementById('appContainer').classList.remove('active');
+        document.getElementById('publicPage').style.display = 'block';
+        showNotification('👋 Déconnexion réussie. À bientôt !');
+    }
+
+    // ============ VIREMENT ============
+    function handleTransfer() {
+        const amount = document.getElementById('transferAmount').value;
+        const msgDiv = document.getElementById('transferMessage');
+        
+        if (!amount || amount <= 0) {
+            msgDiv.style.display = 'block';
+            msgDiv.style.background = 'rgba(239, 68, 68, 0.1)';
+            msgDiv.style.border = '1px solid var(--danger)';
+            msgDiv.style.color = '#fca5a5';
+            msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Veuillez entrer un montant valide';
+            return;
+        }
+        
+        if (amount > 5000) {
+            msgDiv.style.display = 'block';
+            msgDiv.style.background = 'rgba(245, 158, 11, 0.1)';
+            msgDiv.style.border = '1px solid var(--warning)';
+            msgDiv.style.color = '#fcd34d';
+            msgDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Montant supérieur à 5 000 €. Une validation supplémentaire est requise.';
+            return;
+        }
+        
+        msgDiv.style.display = 'block';
+        msgDiv.style.background = 'rgba(16, 185, 129, 0.1)';
+        msgDiv.style.border = '1px solid var(--success)';
+        msgDiv.style.color = '#6ee7b7';
+        msgDiv.innerHTML = '<i class="fas fa-check-circle"></i> ✅ Virement de ' + amount + ' € effectué avec succès !';
+        
+        setTimeout(() => {
+            msgDiv.style.display = 'none';
+        }, 5000);
+    }
+
+    // ============ NOTIFICATIONS ============
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card);
+            color: var(--text);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            font-weight: 500;
+        `;
+        notification.innerHTML = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // ============ INITIALISATION ============
+    console.log('🏦 Banque Sérénité - Système sécurisé initialisé');
+    console.log('📝 Identifiants de démonstration :');
+    console.log('   - jean.dupont / Banque2026!');
+    console.log('   - marie.curie / Secure123!');
+    console.log('   - demo / demo');
+    console.log('⚠️ Ceci est une maquette éducative - Aucune donnée réelle traitée');
+</script>
+
+</body>
+</html>
